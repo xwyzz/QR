@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Cute Shop - บัญชี & คิวอาร์โค้ด</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Itim & Mitr for a super cute Thai font style -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Itim&family=Mitr:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <style>
+        body {
+            font-family: 'Itim', 'Mitr', sans-serif;
+            background-attachment: fixed;
+            transition: background-color 0.5s ease;
+        }
+        /* Custom bubbly scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.3);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #dcd0ff;
+            border-radius: 10px;
+        }
+        /* Bouncy animations */
+        @keyframes float {
+            0% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-10px) rotate(3deg); }
+            100% { transform: translateY(0px) rotate(0deg); }
+        }
+        @keyframes pulse-soft {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.03); }
+        }
+        @keyframes sparkle {
+            0%, 100% { opacity: 0.3; transform: scale(0.8); }
+            50% { opacity: 1; transform: scale(1.2); }
+        }
+        .animate-float {
+            animation: float 4s ease-in-out infinite;
+        }
+        .animate-pulse-soft {
+            animation: pulse-soft 3s ease-in-out infinite;
+        }
+        .sparkle-slow {
+            animation: sparkle 2.5s ease-in-out infinite;
+        }
+    </style>
+</head>
+
+<body class="bg-[#F5F3FF] text-[#4A3E3D] min-h-screen relative overflow-x-hidden pb-20 selection:bg-purple-200">
+
+    <!-- Background Sparkles and Decorative Shapes -->
+    <div class="absolute top-10 left-10 w-12 h-12 text-purple-300 opacity-60 animate-bounce">
+        <svg fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l2.4 7.2 7.6.8-5.6 5.4 1.3 7.6-6.9-3.6-6.9 3.6 1.3-7.6-5.6-5.4 7.6-.8L12 2z"/></svg>
+    </div>
+    <div class="absolute top-1/4 right-8 w-16 h-16 text-yellow-300 opacity-60 animate-float" style="animation-delay: 1s;">
+        <svg fill="currentColor" viewBox="0 0 24 24"><path d="M12 1L9 9l-8 3 8 3 3 8 3-8 8-3-8-3-3-8z"/></svg>
+    </div>
+    <div class="absolute bottom-1/3 left-6 w-14 h-14 text-indigo-300 opacity-50 animate-float" style="animation-delay: 2s;">
+        <svg fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2zm1 14h-2v-2h2v2zm0-4h-2V7h2v5z"/></svg>
+    </div>
+    <div class="absolute bottom-10 right-12 w-10 h-10 text-purple-400 opacity-60 animate-bounce" style="animation-delay: 1.5s;">
+        <svg fill="currentColor" viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+    </div>
+
+    <!-- Main Container -->
+    <div class="max-w-md mx-auto px-4 pt-8 pb-12 relative z-10">
+        
+        <!-- Shop Header Profile -->
+        <div id="header-card" class="text-center mb-8 bg-white/60 backdrop-blur-md rounded-3xl p-6 border-4 border-dashed border-purple-200 shadow-[0_8px_0_rgba(196,181,253,0.4)] relative">
+            <!-- Sparkles orbiting the avatar -->
+            <div class="absolute top-4 right-4 text-amber-400 sparkle-slow">✨</div>
+            <div class="absolute bottom-4 left-4 text-purple-400 sparkle-slow" style="animation-delay: 1s;">🌸</div>
+            
+            <div class="relative w-28 h-28 mx-auto mb-4 group">
+                <div class="absolute inset-0 bg-purple-300 rounded-full animate-ping opacity-10"></div>
+                <!-- Cute Shop Avatar Frame -->
+                <div class="w-full h-full rounded-full border-4 border-purple-300 overflow-hidden bg-white shadow-md flex items-center justify-center relative">
+                    <img id="shop-logo-img" src="https://placehold.co/150x150/f5f3ff/7c3aed?text=🧸" alt="Shop Logo" class="w-full h-full object-cover">
+                </div>
+                <!-- Mini Sticker -->
+                <span class="absolute -bottom-1 -right-1 bg-amber-400 text-white text-xs px-2 py-1 rounded-full border-2 border-white shadow font-bold transform rotate-12">OPEN ✨</span>
+            </div>
+
+            <!-- Shop Info Text -->
+            <h1 id="display-shop-name" class="text-3xl font-extrabold text-[#7C3AED] tracking-wide drop-shadow-sm mb-1">ยินดีต้อนรับสู่ร้านค้าสุดน่ารัก</h1>
+            <p id="display-shop-desc" class="text-sm text-purple-700/80 mb-3 px-4">ขอบคุณที่แวะเข้ามาอุดหนุนและเอ็นดูเราน้าา~ โอนแล้วแจ้งสลิปได้เลยค่ะ 💖</p>
+            
+            <!-- Tags for Contact / Socials -->
+            <div class="flex flex-wrap justify-center gap-2 mt-2" id="display-contacts-container">
+                <span class="bg-purple-100 text-purple-700 text-xs font-semibold px-3 py-1 rounded-full flex items-center gap-1 shadow-sm border border-purple-200" id="contact-badge-line">
+                    <span>💬</span> <span id="display-contact-line">Line: @cutepay</span>
+                </span>
+                <span class="bg-indigo-100 text-indigo-700 text-xs font-semibold px-3 py-1 rounded-full flex items-center gap-1 shadow-sm border border-indigo-200" id="contact-badge-ig">
+                    <span>📸</span> <span id="display-contact-ig">IG: cuteshop_official</span>
+                </span>
+            </div>
+        </div>
+
+        <!-- PromptPay QR Code Section -->
+        <div id="qr-section-card" class="bg-white rounded-[2rem] p-6 mb-6 border-4 border-purple-300 shadow-[0_12px_0_rgba(196,181,253,0.5)] relative overflow-hidden transition-all duration-300 hover:translate-y-[-4px]">
+            <!-- Rainbow top edge decoration -->
+            <div class="absolute top-0 left-0 right-0 h-2 bg-gradient-to-r from-purple-300 via-indigo-300 to-blue-300"></div>
+            
+            <div class="text-center">
+                <!-- Cute QR Header -->
+                <div class="flex items-center justify-center gap-2 mb-4 mt-2">
+                    <span class="text-2xl">📸</span>
+                    <h2 class="text-xl font-bold text-gray-700">คิวอาร์โค้ดพร้อมเพย์</h2>
+                    <span class="text-2xl">🧸</span>
+                </div>
+
+                <!-- Custom PromptPay Tag & Frame with Zoom trigger -->
+                <div onclick="openQrModal()" id="qr-container-box" class="bg-gradient-to-br from-indigo-50 to-purple-50 p-4 rounded-2xl border-2 border-purple-200 inline-block relative shadow-inner animate-pulse-soft cursor-zoom-in group hover:scale-[1.02] transition-transform duration-200" title="คลิกเพื่อขยายใหญ่">
+                    <!-- Dynamic QR Container -->
+                    <div class="bg-white p-2 rounded-xl shadow-sm border border-purple-100 relative overflow-hidden">
+                        <img id="qr-image" src="https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=https://promptpay.io/0888888888" alt="PromptPay QR Code" class="w-56 h-56 mx-auto object-contain rounded-lg">
+                        
+                        <!-- Hover Overlay Effect -->
+                        <div class="absolute inset-0 bg-black/40 flex flex-col items-center justify-center text-white opacity-0 group-hover:opacity-100 transition-opacity duration-200">
+                            <span class="text-2xl animate-bounce">🔍</span>
+                            <span class="text-xs font-bold mt-1 bg-purple-500/80 px-2 py-1 rounded-full">แตะเพื่อขยายใหญ่</span>
+                        </div>
+                    </div>
+                    
+                    <!-- PromptPay Visual Banner underneath QR -->
+                    <div class="mt-3 bg-[#0A3973] text-white py-1.5 px-4 rounded-xl font-sans text-xs flex items-center justify-center gap-2 shadow-md">
+                        <span class="font-black italic tracking-tighter text-yellow-300 text-sm">prompt pay</span>
+                        <span class="border-l border-white/40 h-3"></span>
+                        <span class="font-semibold text-[10px]" id="display-pp-type">พร้อมเพย์สะดวกรวดเร็ว</span>
+                    </div>
+                </div>
+
+                <!-- PP Target Details -->
+                <div class="mt-4 bg-purple-50/50 rounded-xl py-3 px-4 border border-purple-100">
+                    <p class="text-xs text-purple-500/80 font-semibold mb-0.5">เบอร์พร้อมเพย์ / เลขบัตร</p>
+                    <p class="text-xl font-bold text-[#7C3AED] tracking-wider" id="display-pp-number">088-888-8888</p>
+                    <p class="text-xs text-gray-400 mt-1">ชื่อบัญชี: <span id="display-pp-name" class="font-semibold text-gray-600">สมหญิง ยิ่งรวย</span></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bank Accounts Card Section -->
+        <div id="bank-accounts-card" class="bg-white rounded-[2rem] p-6 mb-6 border-4 border-purple-300 shadow-[0_12px_0_rgba(196,181,253,0.5)] relative overflow-hidden">
+            <div class="absolute top-0 left-0 right-0 h-2 bg-gradient-to-r from-teal-200 via-purple-200 to-yellow-200"></div>
+            
+            <div class="flex items-center justify-center gap-2 mb-5 mt-2">
+                <span class="text-2xl">🏦</span>
+                <h2 class="text-xl font-bold text-gray-700">บัญชีธนาคารสำหรับโอน</h2>
+                <span class="text-2xl">💰</span>
+            </div>
+
+            <!-- Dynamic Accounts Wrapper -->
+            <div id="bank-accounts-list" class="space-y-4">
+                <!-- Dynamic bank rows will be injected here. -->
+            </div>
+            
+            <div class="mt-4 text-center text-xs text-purple-400/80 flex items-center justify-center gap-1" id="copy-hint-text">
+                <span>⭐</span> กดที่เลขบัญชีเพื่อคัดลอกได้เลยนะคะ <span>⭐</span>
+            </div>
+        </div>
+
+        <!-- Footer Cute Note -->
+        <div class="text-center mt-6 animate-float">
+            <p class="text-xs text-purple-600 bg-white/50 backdrop-blur-sm py-2 px-4 rounded-full inline-block border border-purple-100">
+                🌱 ขอบคุณสำหรับทุกยอดสั่งซื้อนะคะ มีความสุขมากๆ ค่าา ✨
+            </p>
+        </div>
+
+    </div>
+
+    <!-- Soft Pastel Toast Notification -->
+    <div id="toast" class="fixed bottom-10 left-1/2 -translate-x-1/2 bg-purple-400 text-white px-6 py-3 rounded-full shadow-2xl z-50 flex items-center gap-2 transform translate-y-20 opacity-0 transition-all duration-300 pointer-events-none border-2 border-purple-200">
+        <span class="text-lg">✨</span>
+        <span class="font-bold" id="toast-text">คัดลอกเลขบัญชีแล้วนะคนดี! 💖</span>
+    </div>
+
+    <!-- Cute Zoom Modal (Lightbox) -->
+    <div id="qr-modal" class="fixed inset-0 bg-black/70 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden opacity-0 transition-opacity duration-300 pointer-events-none" onclick="closeQrModal()">
+        <div class="bg-white rounded-[2rem] p-6 max-w-sm w-full border-4 border-purple-300 shadow-2xl relative transform scale-95 transition-all duration-300" onclick="event.stopPropagation()">
+            
+            <!-- Close Button -->
+            <button onclick="closeQrModal()" class="absolute -top-3 -right-3 bg-purple-400 hover:bg-purple-500 text-white w-10 h-10 rounded-full flex items-center justify-center text-xl font-bold border-2 border-white shadow-md hover:scale-110 active:scale-95 transition-transform duration-200">
+                ✕
+            </button>
+            
+            <div class="text-center">
+                <span class="text-3xl block mb-2">✨ 🧸 ✨</span>
+                <h3 class="text-lg font-bold text-gray-700 mb-3">แสกนจ่ายเงินตรงนี้ได้เลยค่ะ</h3>
+                
+                <!-- Zoomed QR Frame -->
+                <div class="bg-gradient-to-br from-indigo-50 to-purple-50 p-4 rounded-2xl border-2 border-purple-200 inline-block relative shadow-inner mb-4">
+                    <img id="modal-qr-image" src="" alt="Enlarged QR Code" class="w-64 h-64 mx-auto object-contain rounded-lg bg-white p-2 border border-purple-100">
+                    
+                    <div class="mt-3 bg-[#0A3973] text-white py-1.5 px-4 rounded-xl font-sans text-xs flex items-center justify-center gap-2 shadow-md">
+                        <span class="font-black italic tracking-tighter text-yellow-300 text-sm">prompt pay</span>
+                        <span class="border-l border-white/40 h-3"></span>
+                        <span class="font-semibold text-[10px]" id="modal-pp-type">พร้อมเพย์สะดวก รวดเร็ว</span>
+                    </div>
+                </div>
+
+                <!-- Text info on modal -->
+                <p class="text-md font-bold text-[#7C3AED]" id="modal-pp-number">088-888-8888</p>
+                <p class="text-xs text-gray-500 mt-0.5">ชื่อบัญชี: <span id="modal-pp-name" class="font-semibold text-gray-700"></span></p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // ===================================================
+        // 🧸 [ตั้งค่าข้อมูลร้านค้าตรงนี้เพื่ออัปเดตข้อมูลได้เลยค่ะ] 🧸
+        // ===================================================
+        const state = {
+            theme: 'purple',       // เลือกธีมสี: 'purple' (ม่วงพาสเทล), 'pink' (ชมพู), 'blue' (ฟ้า), 'green' (เขียว), 'peach' (พีช)
+            shopLogo: '🧸',         // ใส่เป็น Emoji หรือลิงก์ URL ของรูปภาพโลโก้ของคุณก็ได้ค่ะ
+            shopName: '🧸 ร้านตุ๊กตาดุ๊กดิ๊กพาสเทล',
+            shopDesc: 'ยินดีต้อนรับสู่โลกของพวกเรานะคะ โอนแล้วส่งสลิปได้เลยนะ ยินดีต้อนรับลูกค้าคนพิเศษเสมอค่ะ! ✨🍬',
+            line: '@cutepay',       // ไอดีไลน์ร้าน
+            ig: 'cutepay_store',    // ชื่อไอจีร้าน
+            
+            // ข้อมูลสำหรับคิวอาร์โค้ดพร้อมเพย์
+            ppNumber: '088-888-8888',         // เบอร์โทรศัพท์พร้อมเพย์ หรือเลขบัตรประชาชน
+            ppName: 'นางสาวหนูดี น่ารักที่สุด',     // ชื่อจริงเจ้าของพร้อมเพย์
+            
+            // ⭐️ ตรงนี้สำหรับเปลี่ยนรูปภาพคิวอาร์โค้ดของตัวเองค่ะ ⭐️
+            // ถ้าว่างไว้เป็น '' ระบบจะเจนคิวอาร์โค้ดพร้อมเพย์ตามเบอร์ด้านบนให้โดยอัตโนมัติ
+            // ถ้ามีภาพส่วนตัว ให้นำ URL ภาพมาใส่ เช่น 'https://yourwebsite.com/images/myqr.jpg'
+            customQrUrl: '', 
+
+            // รายการบัญชีธนาคารสำหรับรับโอนเงิน (ประเภทธนาคาร: 'kbank', 'scb', 'ktb', 'gsb', 'bbl', 'bay', 'ttb', 'other')
+            banks: [
+                { type: 'kbank', number: '123-4-56789-0', owner: 'นางสาวหนูดี น่ารักที่สุด' },
+                { type: 'scb', number: '987-6-54321-0', owner: 'นางสาวหนูดี น่ารักที่สุด' },
+                { type: 'ktb', number: '555-0-12345-6', owner: 'นางสาวหนูดี น่ารักที่สุด' }
+            ]
+        };
+
+        // Standard Thai Bank metadata
+        const BANK_METADATA = {
+            kbank: { name: 'ธนาคารกสิกรไทย', color: '#138B23', textColor: '#ffffff', logoText: 'KBANK' },
+            scb: { name: 'ธนาคารไทยพาณิชย์', color: '#4E2A81', textColor: '#ffffff', logoText: 'SCB' },
+            ktb: { name: 'ธนาคารกรุงไทย', color: '#00A3E0', textColor: '#ffffff', logoText: 'KTB' },
+            gsb: { name: 'ธนาคารออมสิน', color: '#EC068D', textColor: '#ffffff', logoText: 'GSB' },
+            bbl: { name: 'ธนาคารกรุงเทพ', color: '#1E3E8F', textColor: '#ffffff', logoText: 'BBL' },
+            bay: { name: 'ธนาคารกรุงศรีอยุธยา', color: '#FEE000', textColor: '#544634', logoText: 'BAY' },
+            ttb: { name: 'ธนาคารทหารไทยธนชาต', color: '#002E74', textColor: '#ffffff', logoText: 'TTB' },
+            other: { name: 'ธนาคารอื่นๆ', color: '#7C3AED', textColor: '#ffffff', logoText: 'BANK' }
+        };
+
+        // Custom pop sound effect using Pure Web Audio API
+        function playPopSound() {
+            try {
+                const ctx = new (window.AudioContext || window.webkitAudioContext)();
+                const osc = ctx.createOscillator();
+                const gain = ctx.createGain();
+                
+                osc.type = 'sine';
+                osc.frequency.setValueAtTime(400, ctx.currentTime);
+                osc.frequency.exponentialRampToValueAtTime(1200, ctx.currentTime + 0.15);
+                
+                gain.gain.setValueAtTime(0.3, ctx.currentTime);
+                gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.15);
+                
+                osc.connect(gain);
+                gain.connect(ctx.destination);
+                
+                osc.start();
+                osc.stop(ctx.currentTime + 0.15);
+            } catch (e) {
+                console.log("Audio feedback skipped or not allowed by browser permissions yet.");
+            }
+        }
+
+        // Palette Themes Config
+        const PALETTE_CONFIGS = {
+            purple: {
+                bg: '#F5F3FF',
+                cardBorder: 'border-purple-300',
+                cardShadow: 'rgba(196, 181, 253, 0.5)',
+                brandText: '#7C3AED',
+                toastBg: 'bg-purple-400',
+                toastBorder: 'border-purple-200'
+            },
+            pink: {
+                bg: '#FFF0F5',
+                cardBorder: 'border-pink-300',
+                cardShadow: 'rgba(255, 182, 193, 0.5)',
+                brandText: '#D81B60',
+                toastBg: 'bg-rose-400',
+                toastBorder: 'border-rose-200'
+            },
+            blue: {
+                bg: '#ECF9FF',
+                cardBorder: 'border-blue-300',
+                cardShadow: 'rgba(162, 219, 250, 0.5)',
+                brandText: '#0288D1',
+                toastBg: 'bg-blue-400',
+                toastBorder: 'border-blue-200'
+            },
+            green: {
+                bg: '#F1F9EC',
+                cardBorder: 'border-green-300',
+                cardShadow: 'rgba(183, 225, 161, 0.5)',
+                brandText: '#2E7D32',
+                toastBg: 'bg-green-400',
+                toastBorder: 'border-green-200'
+            },
+            peach: {
+                bg: '#FFF8F3',
+                cardBorder: 'border-amber-200',
+                cardShadow: 'rgba(248, 203, 173, 0.5)',
+                brandText: '#E65100',
+                toastBg: 'bg-amber-400',
+                toastBorder: 'border-amber-200'
+            }
+        };
+
+        // Initialize App on Window load
+        window.onload = function() {
+            applyStateToUI();
+        }
+
+        // Apply state data directly to HTML markup
+        function applyStateToUI() {
+            // Apply Theme
+            setTheme(state.theme);
+
+            // Apply Header text
+            document.getElementById('display-shop-name').innerText = state.shopName || "ชื่อร้านของคุณ";
+            document.getElementById('display-shop-desc').innerText = state.shopDesc || "รายละเอียดร้านของคุณ";
+            document.getElementById('display-contact-line').innerText = 'Line: ' + (state.line || '-');
+            document.getElementById('display-contact-ig').innerText = 'IG: ' + (state.ig || '-');
+
+            // Apply Avatar Logo / Emoji
+            const logoEl = document.getElementById('shop-logo-img');
+            const themeCfg = PALETTE_CONFIGS[state.theme] || PALETTE_CONFIGS.purple;
+            const cleanColor = themeCfg.brandText.replace('#', '');
+            const cleanBg = themeCfg.bg.replace('#', '');
+            
+            if (state.shopLogo.startsWith('http') || state.shopLogo.startsWith('data:image')) {
+                logoEl.src = state.shopLogo;
+            } else {
+                logoEl.src = `https://placehold.co/150x150/${cleanBg}/${cleanColor}?text=${encodeURIComponent(state.shopLogo || '🧸')}`;
+            }
+
+            // PromptPay settings
+            document.getElementById('display-pp-number').innerText = formatPhoneNumber(state.ppNumber);
+            document.getElementById('display-pp-name').innerText = state.ppName || 'ชื่อจริงของคุณ';
+
+            // ⭐️ QR Code Image Selection (Custom Image vs Auto-Generated) ⭐️
+            const qrImg = document.getElementById('qr-image');
+            const modalQrImg = document.getElementById('modal-qr-image');
+            
+            if (state.customQrUrl && state.customQrUrl.trim() !== '') {
+                // Use user custom image
+                qrImg.src = state.customQrUrl;
+                modalQrImg.src = state.customQrUrl;
+            } else {
+                // Auto generate QR using PromptPay API
+                const cleanedPPNum = state.ppNumber.replace(/[^0-9]/g, '');
+                if (cleanedPPNum) {
+                    const generatedUrl = `https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=https://promptpay.io/${cleanedPPNum}`;
+                    qrImg.src = generatedUrl;
+                    modalQrImg.src = generatedUrl;
+                } else {
+                    const placeholderUrl = `https://placehold.co/300x300/${cleanBg}/${cleanColor}?text=กรอกเบอร์โทร`;
+                    qrImg.src = placeholderUrl;
+                    modalQrImg.src = placeholderUrl;
+                }
+            }
+
+            // Sync texts for Modal
+            document.getElementById('modal-pp-number').innerText = formatPhoneNumber(state.ppNumber);
+            document.getElementById('modal-pp-name').innerText = state.ppName || 'ชื่อจริงของคุณ';
+
+            // Render Bank cards list
+            renderBankCards();
+        }
+
+        // Format raw phone string nicely
+        function formatPhoneNumber(num) {
+            let cleaned = num.replace(/\D/g, '');
+            if (cleaned.length === 10) {
+                return cleaned.replace(/(\d{3})(\d{3})(\d{4})/, '$1-$2-$3');
+            } else if (cleaned.length === 13) {
+                return cleaned.replace(/(\d{1})(\d{4})(\d{5})(\d{2})(\d{1})/, '$1-$2-$3-$4-$5');
+            }
+            return num;
+        }
+
+        // Render bank accounts into list
+        function renderBankCards() {
+            const container = document.getElementById('bank-accounts-list');
+            container.innerHTML = '';
+
+            if (!state.banks || state.banks.length === 0) {
+                container.innerHTML = `
+                    <div class="text-center text-sm py-4 text-gray-400">
+                        ยังไม่มีการเพิ่มบัญชีธนาคารค่ะ 🧸
+                    </div>
+                `;
+                return;
+            }
+
+            const activeCfg = PALETTE_CONFIGS[state.theme] || PALETTE_CONFIGS.purple;
+
+            state.banks.forEach(bank => {
+                const meta = BANK_METADATA[bank.type] || BANK_METADATA.other;
+                
+                // Card Row Container
+                const row = document.createElement('div');
+                row.className = `p-4 rounded-2xl border-2 flex items-center justify-between gap-3 hover:scale-[1.01] active:scale-[0.98] transition-all cursor-pointer`;
+                row.style.borderColor = `${activeCfg.brandText}22`;
+                row.style.backgroundColor = `${meta.color}0F`; // Light background matching bank color
+                row.setAttribute('onclick', `copyToClipboard('${bank.number}', '${meta.name}')`);
+
+                // Create custom cute visual representation of bank badge
+                const bankBadge = `
+                    <div class="w-12 h-12 rounded-xl flex flex-col items-center justify-center font-bold text-[10px] text-white shadow-md text-center shrink-0" style="background-color: ${meta.color}">
+                        <span class="text-lg">🏦</span>
+                        <span class="uppercase tracking-tighter text-[9px]" style="color: ${meta.textColor}">${meta.logoText}</span>
+                    </div>
+                `;
+
+                row.innerHTML = `
+                    <div class="flex items-center gap-3">
+                        ${bankBadge}
+                        <div class="text-left">
+                            <h4 class="font-extrabold text-[#5D4037] text-md flex items-center gap-1">
+                                ${meta.name}
+                                <span class="text-xs bg-white border px-1.5 py-0.5 rounded-full font-semibold scale-90" style="color: ${activeCfg.brandText}; border-color: ${activeCfg.brandText}44">โอนเงิน</span>
+                            </h4>
+                            <p class="font-mono text-lg font-bold tracking-wider mb-0.5" style="color: ${activeCfg.brandText}">${bank.number}</p>
+                            <p class="text-xs text-gray-400">ชื่อบัญชี: <span class="font-medium text-gray-600">${bank.owner}</span></p>
+                        </div>
+                    </div>
+                    <!-- Cute Copy Button inside right side -->
+                    <button class="bg-white hover:bg-opacity-90 p-2.5 rounded-full shadow-sm hover:scale-110 active:scale-90 transition-all border shrink-0 flex items-center justify-center" style="color: ${activeCfg.brandText}; border-color: ${activeCfg.brandText}33">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3"></path></svg>
+                    </button>
+                `;
+
+                container.appendChild(row);
+            });
+        }
+
+        // Show Sweet Toast Alert
+        function showToast(message) {
+            const toast = document.getElementById('toast');
+            document.getElementById('toast-text').innerText = message;
+            toast.classList.remove('translate-y-20', 'opacity-0');
+            toast.classList.add('translate-y-0', 'opacity-100');
+            
+            playPopSound();
+
+            setTimeout(() => {
+                toast.classList.remove('translate-y-0', 'opacity-100');
+                toast.classList.add('translate-y-20', 'opacity-0');
+            }, 2500);
+        }
+
+        // Copy Account Action
+        function copyToClipboard(text, bankName) {
+            const textarea = document.createElement('textarea');
+            textarea.value = text.replace(/[^0-9]/g, ''); // Copy pure digits for banking convenience
+            document.body.appendChild(textarea);
+            textarea.select();
+            document.execCommand('copy');
+            document.body.removeChild(textarea);
+
+            showToast(`คัดลอกเลขบัญชี ${bankName} แล้วนะคนดี! 💖`);
+        }
+
+        // Theme Switcher based on configuration state
+        function setTheme(colorThemeName) {
+            const cfg = PALETTE_CONFIGS[colorThemeName] || PALETTE_CONFIGS.purple;
+
+            // Update body background color
+            document.body.style.backgroundColor = cfg.bg;
+
+            // Update Selection color class dynamically
+            document.body.className = document.body.className.replace(/selection:bg-\w+-\d+/, `selection:bg-${colorThemeName === 'purple' ? 'purple' : colorThemeName === 'pink' ? 'pink' : colorThemeName === 'blue' ? 'blue' : colorThemeName === 'green' ? 'green' : 'amber'}-200`);
+
+            // Update branding text colors
+            const brandTexts = document.querySelectorAll('#display-shop-name, #display-pp-number, #modal-pp-number');
+            brandTexts.forEach(el => {
+                el.style.color = cfg.brandText;
+            });
+
+            // Update descriptions and subtle text colors
+            const shopDesc = document.getElementById('display-shop-desc');
+            const copyHint = document.getElementById('copy-hint-text');
+            
+            if (colorThemeName === 'purple') {
+                shopDesc.className = "text-sm text-purple-700/80 mb-3 px-4";
+                copyHint.className = "mt-4 text-center text-xs text-purple-400/80 flex items-center justify-center gap-1";
+            } else if (colorThemeName === 'pink') {
+                shopDesc.className = "text-sm text-pink-700/80 mb-3 px-4";
+                copyHint.className = "mt-4 text-center text-xs text-pink-400/80 flex items-center justify-center gap-1";
+            } else if (colorThemeName === 'blue') {
+                shopDesc.className = "text-sm text-blue-700/80 mb-3 px-4";
+                copyHint.className = "mt-4 text-center text-xs text-blue-400/80 flex items-center justify-center gap-1";
+            } else if (colorThemeName === 'green') {
+                shopDesc.className = "text-sm text-green-700/80 mb-3 px-4";
+                copyHint.className = "mt-4 text-center text-xs text-green-400/80 flex items-center justify-center gap-1";
+            } else {
+                shopDesc.className = "text-sm text-amber-800/80 mb-3 px-4";
+                copyHint.className = "mt-4 text-center text-xs text-amber-500/80 flex items-center justify-center gap-1";
+            }
+
+            // Update border colors and soft shadows of primary displays
+            const cards = document.querySelectorAll('#qr-section-card, #bank-accounts-card, #header-card, #qr-modal > div');
+            cards.forEach(card => {
+                card.classList.remove('border-pink-300', 'border-blue-300', 'border-green-300', 'border-amber-200', 'border-purple-300', 'border-pink-200', 'border-purple-200');
+                card.classList.add(cfg.cardBorder);
+                card.style.boxShadow = `0 12px 0 ${cfg.cardShadow}`;
+            });
+
+            // Update contact badges
+            const lineBadge = document.getElementById('contact-badge-line');
+            const igBadge = document.getElementById('contact-badge-ig');
+            if (colorThemeName === 'purple') {
+                lineBadge.className = "bg-purple-100 text-purple-700 text-xs font-semibold px-3 py-1 rounded-full flex items-center gap-1 shadow-sm border border-purple-200";
+                igBadge.className = "bg-indigo-100 text-indigo-700 text-xs font-semibold px-3 py-1 rounded-full flex items-center gap-1 shadow-sm border border-indigo-200";
+            } else if (colorThemeName === 'pink') {
+                lineBadge.className = "bg-pink-100 text-pink-700 text-xs font-semibold px-3 py-1 rounded-full flex items-center gap-1 shadow-sm border border-pink-200";
+                igBadge.className = "bg-rose-100 text-rose-700 text-xs font-semibold px-3 py-1 rounded-full flex items-center gap-1 shadow-sm border border-rose-200";
+            } else if (colorThemeName === 'blue') {
+                lineBadge.className = "bg-blue-100 text-blue-700 text-xs font-semibold px-3 py-1 rounded-full flex items-center gap-1 shadow-sm border border-blue-200";
+                igBadge.className = "bg-cyan-100 text-cyan-700 text-xs font-semibold px-3 py-1 rounded-full flex items-center gap-1 shadow-sm border border-cyan-200";
+            } else if (colorThemeName === 'green') {
+                lineBadge.className = "bg-green-100 text-green-700 text-xs font-semibold px-3 py-1 rounded-full flex items-center gap-1 shadow-sm border border-green-200";
+                igBadge.className = "bg-teal-100 text-teal-700 text-xs font-semibold px-3 py-1 rounded-full flex items-center gap-1 shadow-sm border border-teal-200";
+            } else {
+                lineBadge.className = "bg-amber-100 text-amber-700 text-xs font-semibold px-3 py-1 rounded-full flex items-center gap-1 shadow-sm border border-amber-200";
+                igBadge.className = "bg-orange-100 text-orange-700 text-xs font-semibold px-3 py-1 rounded-full flex items-center gap-1 shadow-sm border border-orange-200";
+            }
+
+            // Update QR code container gradients dynamically
+            const qrBox = document.getElementById('qr-container-box');
+            if (qrBox) {
+                qrBox.className = qrBox.className.replace(/border-(pink|blue|green|amber|purple)-\d+/g, '');
+                qrBox.classList.add(cfg.cardBorder.replace('300', '200'));
+                qrBox.style.background = `linear-gradient(135deg, ${cfg.bg}, #ffffff)`;
+            }
+            const modalQrBox = document.querySelector('#qr-modal .bg-gradient-to-br');
+            if (modalQrBox) {
+                modalQrBox.className = modalQrBox.className.replace(/border-(pink|blue|green|amber|purple)-\d+/g, '');
+                modalQrBox.classList.add(cfg.cardBorder.replace('300', '200'));
+                modalQrBox.style.background = `linear-gradient(135deg, ${cfg.bg}, #ffffff)`;
+            }
+
+            // Update Toast styling dynamically
+            const toast = document.getElementById('toast');
+            toast.className = `fixed bottom-10 left-1/2 -translate-x-1/2 text-white px-6 py-3 rounded-full shadow-2xl z-50 flex items-center gap-2 transform translate-y-20 opacity-0 transition-all duration-300 pointer-events-none border-2 ${cfg.toastBg} ${cfg.toastBorder}`;
+            
+            // Update Modal Close Button styling
+            const closeBtn = document.querySelector('#qr-modal button');
+            if (closeBtn) {
+                closeBtn.className = `absolute -top-3 -right-3 ${cfg.toastBg} hover:opacity-90 text-white w-10 h-10 rounded-full flex items-center justify-center text-xl font-bold border-2 border-white shadow-md hover:scale-110 active:scale-95 transition-transform duration-200`;
+            }
+        }
+
+        // ⭐️ Lightbox Modal Control functions ⭐️
+        function openQrModal() {
+            const modal = document.getElementById('qr-modal');
+            const modalBox = modal.querySelector('.transform');
+            
+            modal.classList.remove('hidden', 'pointer-events-none');
+            
+            // Wait a tiny frame for Tailwind hidden removal animation to engage
+            setTimeout(() => {
+                modal.classList.remove('opacity-0');
+                modalBox.classList.remove('scale-95');
+                modalBox.classList.add('scale-100');
+            }, 50);
+
+            playPopSound();
+        }
+
+        function closeQrModal() {
+            const modal = document.getElementById('qr-modal');
+            const modalBox = modal.querySelector('.transform');
+            
+            modal.classList.add('opacity-0');
+            modalBox.classList.remove('scale-100');
+            modalBox.classList.add('scale-95');
+
+            setTimeout(() => {
+                modal.classList.add('hidden', 'pointer-events-none');
+            }, 300);
+        }
+    </script>
+</body>
+</html>
